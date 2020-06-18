@@ -33,10 +33,11 @@ public class CollectionVsStream {
 		// streamed approach
 		
 		// Streams : immutable : Thread-safe
-		// Streams : non-reusable
+		// Streams : non-reusable (effecient)
 		
 		Stream<String> namesStream = names.stream();
-		namesStream.forEach(System.out::println);
+		namesStream.forEach(System.out::println);//terminal
+		
 		System.out.println("\n\n");
 		namesStream.forEach(System.out::println);
 		

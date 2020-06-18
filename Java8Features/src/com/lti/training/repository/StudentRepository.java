@@ -19,8 +19,13 @@ public class StudentRepository {
 		student = 
 				new Student("Third", 3, 4.0, "Male", Arrays.asList("Swimming","Vollyball"));
 		students.add(student);
+		
 		student = 
 				new Student("Fourth", 4, 3.9, "Female", Arrays.asList("Swimming","Basketball","Soccor"));
+		students.add(student);
+		
+		student = 
+				new Student("Fifth", 4, 3.3, "Male", Arrays.asList("Swimming","Vollyball"));
 		students.add(student);
 		
 		return students;
