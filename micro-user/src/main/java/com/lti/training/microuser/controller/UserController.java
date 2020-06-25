@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,10 +51,22 @@ public class UserController {
 			throw new BoundaryException("Password not in correct format!!!");
 		}
 		UserDetailDto userDetailDto =  this.userService.login(loginDto);
+		
+		
 		ResponseEntity<UserDetailDto> response = 
 				new ResponseEntity<UserDetailDto>(userDetailDto,HttpStatus.OK);
 		return response;
 	}
+	
+	@GetMapping("/get/{userId}")
+	public ResponseEntity<UserDetailDto> getUserDetail(@PathVariable("userId") String userId){
+		UserDetailDto userDetailDto =  this.userService.getUserDetail(userId);
+		// manage user not found exception
+		ResponseEntity<UserDetailDto> response = 
+				new ResponseEntity<UserDetailDto>(userDetailDto,HttpStatus.OK);
+		return response;
+	}
+	
 	
 	@ExceptionHandler(BoundaryException.class)
 	public ResponseEntity<UserExceptionDto> boundaryExceptionHanler(BoundaryException ex) {

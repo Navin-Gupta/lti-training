@@ -8,5 +8,6 @@ public interface UserService {
 	public UserDetailDto register(RegisterDto registerDto);
 	public UserDetailDto login(LoginDto loginDto);
 	public boolean checkAlreadyInUse(String emailId);
+	public UserDetailDto getUserDetail(String userId);
 	
 }
