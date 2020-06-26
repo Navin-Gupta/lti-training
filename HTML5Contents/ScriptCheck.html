@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        // var divObj = document.getElementById("chk1");
+        // divObj.
+
+        function validate(){
+            var textBox  = document.getElementById("txt");
+            if(textBox.value == ""){
+                alert("Invalid");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="chk1">
+        <form action="" onsubmit="return validate()">
+            Enter name <input type="text" id="txt" >
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+</body>
+</html>
