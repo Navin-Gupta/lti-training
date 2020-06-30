@@ -1,21 +1,57 @@
-function add(n1:number, n2:number, showResult:boolean){
-    const result = n1 + n2;
-    if(showResult)
-        console.log("Addition :" + result);
-    else
-        return result;
+interface Greetings{
+    greet(message : string):void;
 }
 
-// inference
+class EmailGreeting implements Greetings{
+    greet(message : string):void{
+        console.log("Email : "  + message);
+    }
+}
 
-// let num1 = 20;
-// let num1:number = 20;
-let num1:number;
-num1 = 20;
-num1 = "Hello";
-let num2 = 30;
+class Department{
+    // name : string; // public
+    // private name : string;
+    // public name : string;
+    // protected name : string;
 
-const showResult = true;
-showResult = false;
+    // contructor
+   /* constructor(n : string){
+        this.name = n;
+    }*/
 
-add(num1, num2, showResult);
+    constructor(private readonly name : string){
+        // this.name = n;
+    }
+
+
+    // every method has a inbuilt param : this
+    // 'this' : object calling the method by default any
+    describe(this:Department){
+        console.log("Department : " + this.name);
+    }
+
+    // by default return type is any
+  test(): string{
+        return "";
+    }
+
+    trial():undefined{
+        return;
+    }
+
+}
+
+let dept1 = new Department("Account");
+let dept2 = {
+    name : "DUMMY",
+    describe : dept1.describe
+    /*describe : function(){
+        console.log("Dummy Department");
+    }*/
+};
+dept1.describe();
+dept2.describe();
+
+let service: Greetings
+
+service = new EmailGreeting();
