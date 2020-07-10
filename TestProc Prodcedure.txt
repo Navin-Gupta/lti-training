@@ -1,0 +1,22 @@
+create or replace NONEDITIONABLE PROCEDURE TESTPROC (  EMAIL_IN IN VARCHAR2 , REC_COUNT OUT NUMBER , PARAM3 IN OUT VARCHAR2 )
+
+AS 
+  msg VARCHAR2(100):='Hello';
+  -- user defined exception
+  some_thing_wrong EXCEPTION;
+BEGIN
+   
+   select count(*) INTO REC_COUNT from employee where email=EMAIL_IN;
+   -- Raising an exception explicitly
+    RAISE no_data_found;
+
+EXCEPTION
+    WHEN no_data_found THEN
+        DBMS_OUTPUT.PUT_LINE('DATA NOT FOUND!!');
+    WHEN some_thing_wrong THEN
+        DBMS_OUTPUT.PUT_LINE('ALL IS NOT WELL!!');    
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('SOME ISSUE!!');
+    
+    
+END TESTPROC;

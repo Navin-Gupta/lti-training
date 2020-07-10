@@ -1,0 +1,9 @@
+create or replace NONEDITIONABLE PROCEDURE SAVE_EMPLOYEE 
+(
+  UNAME IN VARCHAR2 
+, EMAIL IN VARCHAR2 
+) AS 
+BEGIN
+    insert into employee(name,email) VALUES(UNAME,EMAIL);
+    
+END SAVE_EMPLOYEE;
