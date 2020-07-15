@@ -11,8 +11,12 @@ import com.lti.traininng.micropost.dto.UserDetailDto;
 
 
 @FeignClient(name="micro-user")
+// all requests must be routed through API-GATEWAY
+// @FeignClient(name="api-gateway")
 @RibbonClient(name="micro-user")
 public interface MicroUserFeignProxy {
 	@GetMapping("api/user/get/{userId}")
+	// @GetMapping("/micro-user/api/user/get/{userId}")
 	public ResponseEntity<UserDetailDto> getUserDetail(@PathVariable("userId") String userId);
+	// [api-gateway/micro-user/api/user/get/{userId}]
 }
