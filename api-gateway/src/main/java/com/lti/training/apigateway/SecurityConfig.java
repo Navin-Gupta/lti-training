@@ -16,8 +16,8 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-	@Autowired
-	DataSource dataSource;
+	/*@Autowired
+	DataSource dataSource;*/
 	
 	// define the interaction with credential repo
 	@Override
@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		// from where to check for credentials
 		
 		// jdbc authentication
-		auth.jdbcAuthentication().dataSource(dataSource);
+		// auth.jdbcAuthentication().dataSource(dataSource);
 		
 		
 		// in memory auth
@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable() // form security will not conflict
 			.authorizeRequests() // must be logged
 				.antMatchers("/micro-post/api/post/add/**").hasRole("ADMIN")
+				.antMatchers("/micro-user/api/user/login").hasRole("ADMIN")
 				//.antMatchers("/micro-user/**").permitAll() // all ROLES 
 			.and()
 				.httpBasic(); // Basic token system (formed using username/password)
