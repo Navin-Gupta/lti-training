@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.lti.training.microuser.service.UserService;
 
 @RestController
 @RequestMapping("/api/user")
+// @CrossOrigin("*")
 public class UserController {
 	
 	private UserService userService;
@@ -43,7 +45,17 @@ public class UserController {
 		return response;
 	}
 	
-	@PostMapping("/login")
+	
+	@GetMapping("/login")
+	public ResponseEntity<String> login(){
+		String message = "Welcome!";
+		
+		ResponseEntity<String> response = 
+				new ResponseEntity<String>(message,HttpStatus.OK);
+		return response;
+	}
+	
+	/*@PostMapping("/login")
 	public ResponseEntity<UserDetailDto> login(@Valid @RequestBody LoginDto loginDto
 												, BindingResult result){
 		
@@ -56,7 +68,7 @@ public class UserController {
 		ResponseEntity<UserDetailDto> response = 
 				new ResponseEntity<UserDetailDto>(userDetailDto,HttpStatus.OK);
 		return response;
-	}
+	}*/
 	
 	@GetMapping("/get/{userId}")
 	public ResponseEntity<UserDetailDto> getUserDetail(@PathVariable("userId") String userId){
