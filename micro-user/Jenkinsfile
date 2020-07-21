@@ -1,0 +1,11 @@
+node{
+	def dockerHome
+	stage('Checkout'){
+		git url : '<git repo of docker-compose.yaml', branch: 'master'
+		dockerHome = tool 'MyDocker'		
+	}
+	
+	stage('Run'){
+		bat(/"${dockerHome}\resources\bin\docker-compose" up/) 
+	}
+}

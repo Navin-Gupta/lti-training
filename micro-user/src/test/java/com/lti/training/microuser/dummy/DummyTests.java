@@ -22,7 +22,7 @@ public class DummyTests {
 	}*/
 	
 	
-	@BeforeClass
+/*	@BeforeClass
 	public void setUpClass() {
 		// execute before any of the test cases is executed (once)
 	}
@@ -30,7 +30,7 @@ public class DummyTests {
 	@Before
 	public void setUp() {
 		// to setup before each test case
-	}
+	} */
 	
 	
 	// @After : execute after every test case

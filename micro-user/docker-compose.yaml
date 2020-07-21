@@ -1,0 +1,47 @@
+# confirm from installation doc
+version: '3.7'
+
+networks:
+	posts-network:
+	
+# default loc of volume is define in docker settings
+# need to activate vol creation	
+volumes:
+	mongodb-vol:
+	oracle-vol:
+	mysql-vol:
+	
+	
+services:
+	
+	# container name
+	naming-service:
+		image: discovery-server:lti
+		ports:
+			- "8761:8761"
+		network:
+			-posts-network	
+	
+	mongod-service:
+		image : <mongodb image>
+		environment:	
+			#<variable> : <value>
+		network:
+			- posts-network	
+	
+	user-service:
+		image: user-micro:lti
+		ports:
+			- "9090:9090"
+		depends_on:
+			- naming-service
+		environment:
+			#<variable> : <value>
+		network:
+			- posts-network
+								
+				
+	
+	
+	
+		
