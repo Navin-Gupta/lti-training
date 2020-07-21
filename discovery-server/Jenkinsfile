@@ -1,0 +1,21 @@
+node{
+	def mvnHome
+	def dockerHome
+	stage('Checkout'){
+		git url: 'file://E:\LTI\workspace\api-gateway', branch: 'master'
+		mvnHome = tool 'Local Maven'
+		dockerHome = tool 'MyDocker'
+	}
+	
+	stage('Build'){
+		bat(/"${mvnHome}\bin\mvn" clean package)
+	}
+	
+	stage('DockerImage'){
+		bat(/"${dockerHome}\resources\bin\docker" build -t api-gateway:lti .)
+	}
+	
+	stage('Final'){
+		build job : 'lti-launch-containers'
+	}
+}
